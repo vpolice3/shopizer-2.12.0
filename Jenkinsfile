@@ -7,17 +7,11 @@ pipeline {
        }
     }
    stage("Build") {
-	    tools
-	   {
-		  
-		  maven 'Maven'
-	  }
-     steps {
-    bat ''' 
-    	    mvn install -DskipTests=true
-	        mvn clean install
-      	    
-       '''
+	 def mvnHome = tool name:'Maven',type:'maven'
+	sh ''' 
+	      maven clean install
+	      maven -B verify
+	  '''
    }
    }
   }
