@@ -9,7 +9,7 @@ pipeline {
    stage("Build") {
 	    tools
 	   {
-		  jdk 'jdk'
+		  
 		  maven 'Maven'
 	  }
      steps {
