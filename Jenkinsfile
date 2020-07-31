@@ -7,6 +7,7 @@ pipeline {
        }
     }
    stage("Build") {
+	   steps{
 	 def mvnHome = tool name:'Maven',type:'maven'
 	sh ''' 
 	      maven clean install
