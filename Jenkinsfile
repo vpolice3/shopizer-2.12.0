@@ -18,5 +18,23 @@ pipeline {
             '''
         }
     }
+   stage('Build images') {
+	      steps {
+		bat '''
+			  cd sm-shop
+			  docker build . -t shopizer-2.12.0
+			 
+		  
+		'''
+	      }
+       }
+   stage('Run image'){
+    steps{
+     bat '''
+     cd sm-shop
+     docker run shopizer-2.12.0
+     '''
+   }
   }
+}
 }
