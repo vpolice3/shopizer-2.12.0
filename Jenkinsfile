@@ -12,7 +12,7 @@ pipeline {
             maven 'Maven'
         }
          steps{
-            sh '''
+            bat '''
               cd sm-shop
               mvn clean install
               mvn clean package
