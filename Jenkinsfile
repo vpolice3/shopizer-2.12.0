@@ -13,7 +13,6 @@ pipeline {
         }
          steps{
             bat '''
-              cd sm-shop
               mvn clean install
               mvn clean package
             '''
