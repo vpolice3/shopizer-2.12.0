@@ -17,5 +17,6 @@ pipeline {
               mvn clean package
             '''
         }
+    }
   }
 }
