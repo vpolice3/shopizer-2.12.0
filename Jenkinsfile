@@ -13,6 +13,7 @@ pipeline {
         }
          steps{
             sh '''
+              cd sm-shop
               mvn clean install
               mvn clean package
             '''
