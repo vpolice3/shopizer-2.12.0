@@ -6,14 +6,16 @@ pipeline {
          git 'https://github.com/vpolice3/shopizer-2.12.0.git'
        }
     }
-   stage("Build") {
-	   steps{
-	 def mvnHome = tool name:'Maven',type:'maven'
-	sh ''' 
-	      maven clean install
-	      maven -B verify
-	  '''
-   }
-   }
+    stage('Build Projecct'){
+            tools{
+            jdk 'jdk'
+            maven 'Maven'
+        }
+         steps{
+            sh '''
+              mvn clean install
+              mvn clean package
+            '''
+        }
   }
 }
