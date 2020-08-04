@@ -30,7 +30,7 @@ pipeline {
        }
    stage('Push Image'){
 	       steps{
-	         withDockerRegistry(credentialsId: 'DOCKER_HUB_CREDENTIAL') {
+	         withDockerRegistry([credentialsId: 'DOCKER_HUB_CREDENTIAL', url: '']) {
    			bat "docker push vikaspolicedockerhub/shopizer-app:latest"
 		 }
 }
