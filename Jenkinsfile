@@ -22,7 +22,7 @@ pipeline {
 	      steps {
 		bat '''
 			  cd sm-shop
-			  docker build -f "Dockerfile" -t vikaspolicedockerhub/shopizer-app:latest .
+			  docker build -f "Dockerfile.3.0.0" -t vikaspolicedockerhub/shopizer-app:latest .
 			 
 		  
 		'''
