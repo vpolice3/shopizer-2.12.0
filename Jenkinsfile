@@ -28,6 +28,14 @@ pipeline {
 		'''
 	      }
        }
+   stage('Push Image'){
+	       steps{
+	        withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: '')]) {
+		   bat "docker login -u dockerhandson -p ${DOCKER_HUB_CREDENTIALS}"  
+		}
+		   bat "docker push vikaspolicedockerhub/shopizer-app:latest"
+	       }
+   }	  
    stage('Run image'){
     steps{
      bat '''
