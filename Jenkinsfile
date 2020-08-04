@@ -32,7 +32,7 @@ pipeline {
     steps{
      bat '''
      cd sm-shop
-     docker run shopizer-app
+     docker run vikaspolicedockerhub/shopizer-app:latest
      '''
    }
   }
