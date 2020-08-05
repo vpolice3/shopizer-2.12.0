@@ -35,13 +35,14 @@ pipeline {
 		 }
 }
 	       }
-   stage('Run image'){
-    steps{
-     bat '''
-     cd sm-shop
-     docker run vikaspolicedockerhub/shopizer-app:latest
-     '''
-   }
-  }
+	  stage('Deploy Application in Kubernetes Cluster'){
+	       steps{
+		 kubernetesDeploy(
+			 configs: "shopizer.deployment.yaml",
+			 kubeconfigId: "KUBERNETES_CLUSTER_CONFIG",
+			 enableConfigSubstitution: true
+		  )
+	  }
+     }
 }
 }
