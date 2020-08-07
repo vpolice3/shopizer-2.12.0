@@ -12,7 +12,7 @@ pipeline {
             maven 'Maven'
         }
          steps{
-            bat '''
+            sh '''
               
               mvn clean install
             '''
@@ -20,7 +20,7 @@ pipeline {
     }
    stage('Build images') {
 	      steps {
-		bat '''
+		sh '''
 			  cd sm-shop
 			  docker build -f "Dockerfile" -t vikaspolicedockerhub/shopizer-app:latest .
 			 
@@ -31,13 +31,13 @@ pipeline {
    stage('Push Image'){
 	       steps{
 	         withDockerRegistry([credentialsId: 'DOCKER_HUB_CREDENTIAL', url: '']) {
-   			bat 'docker push vikaspolicedockerhub/shopizer-app:latest'
+   			sh 'docker push vikaspolicedockerhub/shopizer-app:latest'
 		 }
 }
 	       }
 	  stage('Deploy to dev env') {
 	      steps {
-		bat '''
+		sh '''
 			  docker run -d --name=shopizer-appication1 -p 8080:8080 vikaspolicedockerhub/shopizer-app:latest
 			 
 		  
