@@ -38,7 +38,7 @@ pipeline {
 	  stage('Deploy to dev env') {
 	      steps {
 		bat '''
-			  docker run -d --name=shopizer -p 8085:8080 vikaspolicedockerhub/shopizer-app:latest
+			  docker run -d --name=shopizer-app1 -p 8085:8080 vikaspolicedockerhub/shopizer-app:latest
 			 
 		  
 		'''
