@@ -28,7 +28,7 @@ Resources:
           yum install docker
           service docker start
           usermod -a -G docker ec2-user
-          docker run -d --name=shopizer-appication1 -p 8086:8080 vikaspolicedockerhub/shopizer-app:latest
+          docker run -d --name=shopizer-appication1 -p 8081:8080 vikaspolicedockerhub/shopizer-app:latest
 
   MyInstance2:
     Type: AWS::EC2::Instance
@@ -48,7 +48,7 @@ Resources:
           yum install docker
           service docker start
           usermod -a -G docker ec2-user
-          docker run -d --name=shopizer-appication1 -p 8086:8080 vikaspolicedockerhub/shopizer-app:latest
+          docker run -d --name=shopizer-appication1 -p 8081:8080 vikaspolicedockerhub/shopizer-app:latest
 
   ELBSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
@@ -56,9 +56,9 @@ Resources:
       GroupDescription: "ELB SG"
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
-          FromPort: 8086
+          FromPort: 8081
           IpProtocol: tcp
-          ToPort: 8086
+          ToPort: 8081
 
   ServerSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
@@ -70,9 +70,9 @@ Resources:
         IpProtocol: tcp
         ToPort: 22
       - SourceSecurityGroupName: !Ref ELBSecurityGroup
-        FromPort: 8086
+        FromPort: 8081
         IpProtocol: tcp
-        ToPort: 8086
+        ToPort: 8081
 
   MyLoadBalancer:
     Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
@@ -105,9 +105,9 @@ Resources:
       VpcId: !Ref ELBVPC
       Targets:
         - Id: !Ref MyInstance1
-          Port: 8086
+          Port: 8081
         - Id: !Ref MyInstance2
-          Port: 8086
+          Port: 8081
 Outputs:
   ELBDNSName:
     Description: The DNSName of the load balancer
