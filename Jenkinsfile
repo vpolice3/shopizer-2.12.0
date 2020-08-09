@@ -1,9 +1,5 @@
 pipeline {
-  environment {
-    registry = "vikaspolicedockerhub/shopizer-app"
-    registryCredential = 'DOCKER_HUB_CREDNTIALS'
-    dockerImage = ''
-  }
+ 
   agent any
   stages{
     stage ('Build') {
@@ -18,13 +14,13 @@ pipeline {
         archiveArtifacts artifacts: '**/*.war', followSymlinks: false
       }
     }
-    stage ('Build Docker Image') {
-      steps{
-        echo "Building Docker Image"
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
+   stage('Build images') {
+	      steps {
+		sh '''
+			 
+			  docker build -f "Dockerfile" -t vikaspolicedockerhub/shopizer-app:latest . 
+		'''
+	    }
     }
   }
 }
