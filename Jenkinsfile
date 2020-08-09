@@ -28,5 +28,13 @@ pipeline {
 	}
       }
     }
+   stage('Deploy to dev env') {
+	      steps {
+		sh '''
+			  docker rm -f shopizer-appication1 || true
+			 docker run -d --name=shopizer -p 8081:8080 vikaspolicedockerhub/shopizer-app:latest  
+		'''
+      }
+    }
   }
 }
