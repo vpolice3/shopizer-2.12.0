@@ -39,7 +39,7 @@ pipeline {
 	      steps {
 		sh '''
 			  docker rm -f shopizer-appication1 || true
-			 docker run -d --name=shopizer-appication1 -p 8086:8080 vikaspolicedockerhub/shopizer-app:latest
+			 docker run -d --name=shopizer-appication1 -p 8081:8080 vikaspolicedockerhub/shopizer-app:latest
 			 
 		  
 		'''
