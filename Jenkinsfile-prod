@@ -1,1 +1,20 @@
-
+pipeline {
+  agent any
+  stages{  
+      stage('Deploy to Prod1') {
+                steps {
+                  echo "Deploying to Prod1"
+                  sshagent(['ssh-key']) {
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@34.230.55.216 docker rm -f shopizer || true"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@34.230.55.216 docker run -d --name=shopizer -p 8081:8080 "
+          }
+        }
+      }
+      stage('Deploy to Prod2') {
+                steps {
+                  echo "Deploying to Prod2"
+                  
+                }
+      }         
+  }
+}
