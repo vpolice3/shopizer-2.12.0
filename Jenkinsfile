@@ -25,6 +25,7 @@ pipeline {
 	       steps{
 	         withDockerRegistry([credentialsId: 'DOCKER_HUB_CREDENTIALS', url: '']) {
    			sh 'docker push vikaspolicedockerhub/shopizer-app:latest'
+	}
       }
     }
   }
