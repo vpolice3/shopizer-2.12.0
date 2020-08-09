@@ -1,5 +1,4 @@
 pipeline {
- 
   agent any
   stages{
     stage ('Build') {
@@ -20,7 +19,13 @@ pipeline {
 			  cd sm-shop
 			  docker build -f "Dockerfile" -t vikaspolicedockerhub/shopizer-app:latest . 
 		'''
-	    }
+      }
+    }
+   stage('Push Image'){
+	       steps{
+	         withDockerRegistry([credentialsId: 'DOCKER_HUB_CREDENTIALS', url: '']) {
+   			sh 'docker push vikaspolicedockerhub/shopizer-app:latest'
+      }
     }
   }
 }
